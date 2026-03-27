@@ -29,6 +29,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             overflow: hidden;
+            padding-bottom: 20px;
         }
 
         header {
@@ -116,12 +117,12 @@
             background-color: #f1f5f9;
         }
 
-        /* Tarjetas a Domicilio */
+        /* Tarjetas */
         .cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
-            padding: 0 20px 30px;
+            padding: 0 20px 10px;
         }
 
         .card {
@@ -146,9 +147,13 @@
         }
 
         .card p {
-            margin: 0;
+            margin: 0 0 8px;
             font-size: 14px;
             line-height: 1.5;
+        }
+        
+        .card p:last-child {
+            margin-bottom: 0;
         }
 
         .card-alert {
@@ -157,6 +162,26 @@
         
         .card-closed {
             border-top-color: var(--closed-text);
+        }
+
+        .text-closed {
+            color: var(--closed-text);
+            font-weight: bold;
+        }
+
+        /* Caja de Información */
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid var(--distelsa-blue);
+            padding: 15px;
+            margin: 0 20px 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        .info-box strong {
+            color: var(--distelsa-blue);
         }
 
     </style>
@@ -175,14 +200,14 @@
             <thead>
                 <tr>
                     <th colspan="2">Centro de Servicio</th>
-                    <th class="date-header">Lunes<br>30/03/2026</th>
-                    <th class="date-header">Martes<br>31/03/2026</th>
-                    <th class="date-header">Miércoles<br>1/04/2026</th>
-                    <th class="date-header">Jueves<br>2/04/2026</th>
-                    <th class="date-header">Viernes<br>3/04/2026</th>
-                    <th class="date-header">Sábado<br>4/04/2026</th>
-                    <th class="date-header">Domingo<br>5/04/2026</th>
-                    <th class="date-header">Lunes<br>6/04/2026</th>
+                    <th class="date-header">Lunes<br>30/03</th>
+                    <th class="date-header">Martes<br>31/03</th>
+                    <th class="date-header">Miércoles<br>1/04</th>
+                    <th class="date-header">Jueves<br>2/04</th>
+                    <th class="date-header">Viernes<br>3/04</th>
+                    <th class="date-header">Sábado<br>4/04</th>
+                    <th class="date-header">Domingo<br>5/04</th>
+                    <th class="date-header">Lunes<br>6/04</th>
                 </tr>
             </thead>
             <tbody>
@@ -264,6 +289,27 @@
             <p>Descanso completo con <strong>técnicos alertas</strong> por cualquier emergencia o caso VIP.</p>
         </div>
     </div>
+
+    <h2 class="section-title">Calendario de Abasto (Semanas 14 y 15)</h2>
+    
+    <div class="info-box">
+        <strong>Válido del Lunes 30 de marzo al Sábado 11 de abril.</strong><br>
+        Agradecemos validar con detalle sus días de visita asignados para las programaciones de entregas con clientes y la recepción de abasto por parte de transporte interno.
+    </div>
+
+    <div class="cards-container">
+        <div class="card">
+            <h4>Semana 14 (Semana Santa)</h4>
+            <p><strong>Del Lunes 30/03 al Miércoles 01/04:</strong> Abasto normal según programación.</p>
+            <p class="text-closed">*** Los días Jueves 02, Viernes 03 y Sábado 04 NO se tendrá abasto.</p>
+        </div>
+        <div class="card">
+            <h4>Semana 15</h4>
+            <p class="text-closed" style="margin-bottom: 8px;">*** El día Lunes 06/04 NO se tendrá abasto.</p>
+            <p><strong>Del Martes 07/04 al Sábado 11/04:</strong> Retomamos visitas y abasto normal.</p>
+        </div>
+    </div>
+
 </div>
 
 </body>
