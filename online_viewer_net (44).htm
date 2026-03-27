@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios Semana Santa - Servicio Técnico</title>
+    <style>
+        :root {
+            --distelsa-blue: #002D62; /* Azul corporativo */
+            --distelsa-yellow: #FFD100; /* Amarillo corporativo */
+            --text-dark: #333333;
+            --bg-light: #f4f7f6;
+            --closed-bg: #ffe6e6;
+            --closed-text: #cc0000;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background-color: var(--distelsa-blue);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--distelsa-yellow);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 16px;
+            color: var(--distelsa-yellow);
+            font-weight: bold;
+        }
+
+        .section-title {
+            color: var(--distelsa-blue);
+            border-left: 4px solid var(--distelsa-yellow);
+            padding-left: 10px;
+            margin: 30px 20px 15px;
+            font-size: 20px;
+        }
+
+        /* Tabla Presenciales */
+        .table-responsive {
+            overflow-x: auto;
+            padding: 0 20px 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px 8px;
+            white-space: nowrap;
+        }
+
+        th {
+            background-color: var(--distelsa-yellow);
+            color: var(--distelsa-blue);
+            font-weight: bold;
+        }
+
+        th.date-header {
+            font-size: 13px;
+        }
+
+        .branch-code {
+            font-weight: bold;
+            color: var(--distelsa-blue);
+        }
+
+        .branch-name {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .cerrado {
+            background-color: var(--closed-bg);
+            color: var(--closed-text);
+            font-weight: bold;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* Tarjetas a Domicilio */
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 0 20px 30px;
+        }
+
+        .card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--distelsa-blue);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .card h4 {
+            margin: 0 0 10px;
+            color: var(--distelsa-blue);
+            font-size: 16px;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .card-alert {
+            border-top-color: var(--distelsa-yellow);
+        }
+        
+        .card-closed {
+            border-top-color: var(--closed-text);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Horarios de Atención - Semana Santa 2026</h1>
+        <p>Servicio Técnico</p>
+    </header>
+
+    <h2 class="section-title">Talleres Presenciales</h2>
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Centro de Servicio</th>
+                    <th class="date-header">Lunes<br>30/03/2026</th>
+                    <th class="date-header">Martes<br>31/03/2026</th>
+                    <th class="date-header">Miércoles<br>1/04/2026</th>
+                    <th class="date-header">Jueves<br>2/04/2026</th>
+                    <th class="date-header">Viernes<br>3/04/2026</th>
+                    <th class="date-header">Sábado<br>4/04/2026</th>
+                    <th class="date-header">Domingo<br>5/04/2026</th>
+                    <th class="date-header">Lunes<br>6/04/2026</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="branch-code">SV001</td>
+                    <td class="branch-name">Zona 10</td>
+                    <td>08:30 - 18:00</td><td>08:30 - 18:00</td><td>08:30 - 13:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:30 - 18:00</td>
+                </tr>
+                <tr>
+                    <td class="branch-code">SV002</td>
+                    <td class="branch-name">Delta</td>
+                    <td>08:00 - 17:00</td><td>08:00 - 17:00</td><td>08:00 - 12:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                    <td class="branch-code">SV003</td>
+                    <td class="branch-name">Majadas</td>
+                    <td>09:00 - 21:00</td><td>09:00 - 21:00</td><td>10:00 - 18:00</td><td>10:00 - 20:00</td><td class="cerrado">CERRADO</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>09:00 - 21:00</td>
+                </tr>
+                <tr>
+                    <td class="branch-code">SV004</td>
+                    <td class="branch-name">Xela</td>
+                    <td>08:30 - 18:00</td><td>08:30 - 18:00</td><td>08:30 - 13:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:30 - 18:00</td>
+                </tr>
+                <tr>
+                    <td class="branch-code">SV005</td>
+                    <td class="branch-name">Chimaltenango</td>
+                    <td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>08:00 - 17:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>10:00 - 17:00</td><td>10:00 - 17:00</td><td>10:00 - 18:00</td>
+                </tr>
+                <tr>
+                    <td class="branch-code">SV007</td>
+                    <td class="branch-name">Alamos</td>
+                    <td>09:00 - 19:00</td><td>09:00 - 19:00</td><td>10:00 - 17:00</td><td>10:00 - 17:00</td><td class="cerrado">CERRADO</td><td>10:00 - 17:00</td><td>10:00 - 17:00</td><td>09:00 - 19:00</td>
+                </tr>
+                <tr>
+                    <td class="branch-code">SV008</td>
+                    <td class="branch-name">Mazatenango</td>
+                    <td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td class="cerrado">CERRADO</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 20:00</td>
+                </tr>
+                <tr>
+                    <td class="branch-code">SV011</td>
+                    <td class="branch-name">Puerto San José</td>
+                    <td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td class="cerrado">CERRADO</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td>
+                </tr>
+                <tr>
+                    <td class="branch-code">RCS01</td>
+                    <td class="branch-name">Outlet Majadas</td>
+                    <td>09:00 - 21:00</td><td>09:00 - 21:00</td><td>10:00 - 18:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>09:00 - 21:00</td>
+                </tr>
+                <tr>
+                    <td class="branch-code">RCS03</td>
+                    <td class="branch-name">Delta</td>
+                    <td>08:00 - 17:00</td><td>08:00 - 17:00</td><td>08:00 - 12:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:00 - 17:00</td>
+                </tr>
+                <tr>
+                    <td class="branch-code">RC004</td>
+                    <td class="branch-name">Majadas</td>
+                    <td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>10:00 - 18:00</td><td>10:00 - 20:00</td><td class="cerrado">CERRADO</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="section-title">Servicio a Domicilio (Próxima Semana)</h2>
+    <div class="cards-container">
+        <div class="card">
+            <h4>Lunes, Martes y Miércoles</h4>
+            <p><strong>Equipo completo</strong> en horario normal.</p>
+        </div>
+        <div class="card card-alert">
+            <h4>Jueves</h4>
+            <p>Horario normal con <strong>equipo reducido</strong> (el necesario).</p>
+        </div>
+        <div class="card card-closed">
+            <h4>Viernes</h4>
+            <p><strong>Descanso completo.</strong></p>
+        </div>
+        <div class="card card-alert">
+            <h4>Sábado</h4>
+            <p>Descanso completo con <strong>técnicos alertas</strong> por cualquier emergencia o caso VIP.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
