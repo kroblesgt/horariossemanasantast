@@ -6,8 +6,8 @@
     <title>Horarios Semana Santa 2026 - Grupo Distelsa</title>
     <style>
         :root {
-            --distelsa-blue: #002D62; /* Azul corporativo */
-            --distelsa-yellow: #FFD100; /* Amarillo corporativo */
+            --primary: #002855; /* Azul oscuro del CRM */
+            --accent: #E31837;  /* Rojo acento del CRM */
             --text-dark: #333333;
             --bg-light: #f4f7f6;
             --closed-bg: #ffe6e6;
@@ -33,7 +33,7 @@
         }
 
         header {
-            background-color: var(--distelsa-blue);
+            background-color: var(--primary);
             color: white;
             padding: 20px;
             text-align: center;
@@ -49,15 +49,15 @@
         header p {
             margin: 5px 0 0;
             font-size: 16px;
-            color: var(--distelsa-yellow);
+            color: var(--accent);
             font-weight: bold;
         }
 
         /* Tabs Navigation */
         .tabs {
             display: flex;
-            background-color: var(--distelsa-blue);
-            border-bottom: 5px solid var(--distelsa-yellow);
+            background-color: var(--primary);
+            border-bottom: 5px solid var(--accent);
         }
 
         .tab-btn {
@@ -83,8 +83,8 @@
         }
 
         .tab-btn.active {
-            background-color: var(--distelsa-yellow);
-            color: var(--distelsa-blue);
+            background-color: var(--accent);
+            color: white;
         }
 
         .tab-content {
@@ -102,8 +102,8 @@
         }
 
         .section-title {
-            color: var(--distelsa-blue);
-            border-left: 4px solid var(--distelsa-yellow);
+            color: var(--primary);
+            border-left: 4px solid var(--accent);
             padding-left: 10px;
             margin: 30px 20px 15px;
             font-size: 20px;
@@ -129,8 +129,8 @@
         }
 
         th {
-            background-color: var(--distelsa-yellow);
-            color: var(--distelsa-blue);
+            background-color: var(--accent);
+            color: white;
             font-weight: bold;
             position: sticky;
             top: 0;
@@ -138,7 +138,7 @@
 
         .branch-code {
             font-weight: bold;
-            color: var(--distelsa-blue);
+            color: var(--primary);
         }
 
         .branch-name {
@@ -173,32 +173,32 @@
             border-radius: 6px;
             padding: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--distelsa-blue);
+            border-top: 4px solid var(--primary);
         }
 
         .card h4 {
             margin: 0 0 10px;
-            color: var(--distelsa-blue);
+            color: var(--primary);
             font-size: 16px;
         }
 
         .card p { margin: 0 0 8px; font-size: 14px; line-height: 1.5; }
         .card p:last-child { margin-bottom: 0; }
-        .card-alert { border-top-color: var(--distelsa-yellow); }
+        .card-alert { border-top-color: var(--accent); }
         .card-closed { border-top-color: var(--closed-text); }
         .text-closed { color: var(--closed-text); font-weight: bold; }
 
         /* Caja de Información */
         .info-box {
             background-color: #f8f9fa;
-            border-left: 4px solid var(--distelsa-blue);
+            border-left: 4px solid var(--primary);
             padding: 15px;
             margin: 0 20px 20px;
             font-size: 14px;
             line-height: 1.5;
             color: #444;
         }
-        .info-box strong { color: var(--distelsa-blue); }
+        .info-box strong { color: var(--primary); }
 
     </style>
 </head>
@@ -249,7 +249,7 @@
             </table>
         </div>
 
-        <h2 class="section-title">Servicio a Domicilio</h2>
+        <h2 class="section-title">Servicio a Domicilio (Próxima Semana)</h2>
         <div class="cards-container">
             <div class="card">
                 <h4>Lunes, Martes y Miércoles</h4>
@@ -304,7 +304,7 @@
 
     <div id="Kioscos" class="tab-content">
         
-        <div class="info-box" style="margin-top: 20px; background-color: #fff3cd; border-color: var(--distelsa-yellow);">
+        <div class="info-box" style="margin-top: 20px;">
             <strong>NOTA IMPORTANTE:</strong> Kioscos Max y Samsung que están en Centro Comercial operan con el <strong>mismo horario de la tienda</strong>.
         </div>
 
@@ -444,20 +444,17 @@
     function openTab(evt, tabName) {
         var i, tabcontent, tablinks;
         
-        // Ocultar todo el contenido de las pestañas
         tabcontent = document.getElementsByClassName("tab-content");
         for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
             tabcontent[i].classList.remove("active");
         }
         
-        // Quitar la clase "active" de todos los botones
         tablinks = document.getElementsByClassName("tab-btn");
         for (i = 0; i < tablinks.length; i++) {
             tablinks[i].classList.remove("active");
         }
         
-        // Mostrar la pestaña actual y añadir la clase "active" al botón que la abrió
         document.getElementById(tabName).style.display = "block";
         document.getElementById(tabName).classList.add("active");
         evt.currentTarget.classList.add("active");
