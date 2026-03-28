@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horarios Semana Santa - Servicio Técnico</title>
+    <title>Horarios Semana Santa 2026 - Grupo Distelsa</title>
     <style>
         :root {
             --distelsa-blue: #002D62; /* Azul corporativo */
@@ -37,7 +37,6 @@
             color: white;
             padding: 20px;
             text-align: center;
-            border-bottom: 5px solid var(--distelsa-yellow);
         }
 
         header h1 {
@@ -54,6 +53,54 @@
             font-weight: bold;
         }
 
+        /* Tabs Navigation */
+        .tabs {
+            display: flex;
+            background-color: var(--distelsa-blue);
+            border-bottom: 5px solid var(--distelsa-yellow);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .tab-btn:last-child {
+            border-right: none;
+        }
+
+        .tab-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .tab-btn.active {
+            background-color: var(--distelsa-yellow);
+            color: var(--distelsa-blue);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         .section-title {
             color: var(--distelsa-blue);
             border-left: 4px solid var(--distelsa-yellow);
@@ -62,7 +109,7 @@
             font-size: 20px;
         }
 
-        /* Tabla Presenciales */
+        /* Tablas */
         .table-responsive {
             overflow-x: auto;
             padding: 0 20px 20px;
@@ -71,13 +118,13 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 14px;
+            font-size: 13px;
             text-align: center;
         }
 
         th, td {
             border: 1px solid #ddd;
-            padding: 10px 8px;
+            padding: 8px;
             white-space: nowrap;
         }
 
@@ -85,10 +132,8 @@
             background-color: var(--distelsa-yellow);
             color: var(--distelsa-blue);
             font-weight: bold;
-        }
-
-        th.date-header {
-            font-size: 13px;
+            position: sticky;
+            top: 0;
         }
 
         .branch-code {
@@ -99,23 +144,20 @@
         .branch-name {
             text-align: left;
             font-weight: bold;
+            white-space: normal;
+            min-width: 200px;
         }
 
         .cerrado {
             background-color: var(--closed-bg);
             color: var(--closed-text);
             font-weight: bold;
-            font-size: 12px;
+            font-size: 11px;
             letter-spacing: 0.5px;
         }
 
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        tr:hover {
-            background-color: #f1f5f9;
-        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #f1f5f9; }
 
         /* Tarjetas */
         .cards-container {
@@ -132,12 +174,6 @@
             padding: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             border-top: 4px solid var(--distelsa-blue);
-            transition: transform 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
         .card h4 {
@@ -146,28 +182,11 @@
             font-size: 16px;
         }
 
-        .card p {
-            margin: 0 0 8px;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        
-        .card p:last-child {
-            margin-bottom: 0;
-        }
-
-        .card-alert {
-            border-top-color: var(--distelsa-yellow);
-        }
-        
-        .card-closed {
-            border-top-color: var(--closed-text);
-        }
-
-        .text-closed {
-            color: var(--closed-text);
-            font-weight: bold;
-        }
+        .card p { margin: 0 0 8px; font-size: 14px; line-height: 1.5; }
+        .card p:last-child { margin-bottom: 0; }
+        .card-alert { border-top-color: var(--distelsa-yellow); }
+        .card-closed { border-top-color: var(--closed-text); }
+        .text-closed { color: var(--closed-text); font-weight: bold; }
 
         /* Caja de Información */
         .info-box {
@@ -179,10 +198,7 @@
             line-height: 1.5;
             color: #444;
         }
-
-        .info-box strong {
-            color: var(--distelsa-blue);
-        }
+        .info-box strong { color: var(--distelsa-blue); }
 
     </style>
 </head>
@@ -191,140 +207,262 @@
 <div class="container">
     <header>
         <h1>Horarios de Atención - Semana Santa 2026</h1>
-        <p>Servicio Técnico</p>
+        <p>Grupo Distelsa</p>
     </header>
 
-    <h2 class="section-title">Talleres Presenciales</h2>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="2">Centro de Servicio</th>
-                    <th class="date-header">Lunes<br>30/03</th>
-                    <th class="date-header">Martes<br>31/03</th>
-                    <th class="date-header">Miércoles<br>1/04</th>
-                    <th class="date-header">Jueves<br>2/04</th>
-                    <th class="date-header">Viernes<br>3/04</th>
-                    <th class="date-header">Sábado<br>4/04</th>
-                    <th class="date-header">Domingo<br>5/04</th>
-                    <th class="date-header">Lunes<br>6/04</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="branch-code">SV001</td>
-                    <td class="branch-name">Zona 10</td>
-                    <td>08:30 - 18:00</td><td>08:30 - 18:00</td><td>08:30 - 13:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:30 - 18:00</td>
-                </tr>
-                <tr>
-                    <td class="branch-code">SV002</td>
-                    <td class="branch-name">Delta</td>
-                    <td>08:00 - 17:00</td><td>08:00 - 17:00</td><td>08:00 - 12:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:00 - 17:00</td>
-                </tr>
-                <tr>
-                    <td class="branch-code">SV003</td>
-                    <td class="branch-name">Majadas</td>
-                    <td>09:00 - 21:00</td><td>09:00 - 21:00</td><td>10:00 - 18:00</td><td>10:00 - 20:00</td><td class="cerrado">CERRADO</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>09:00 - 21:00</td>
-                </tr>
-                <tr>
-                    <td class="branch-code">SV004</td>
-                    <td class="branch-name">Xela</td>
-                    <td>08:30 - 18:00</td><td>08:30 - 18:00</td><td>08:30 - 13:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:30 - 18:00</td>
-                </tr>
-                <tr>
-                    <td class="branch-code">SV005</td>
-                    <td class="branch-name">Chimaltenango</td>
-                    <td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>08:00 - 17:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>10:00 - 17:00</td><td>10:00 - 17:00</td><td>10:00 - 18:00</td>
-                </tr>
-                <tr>
-                    <td class="branch-code">SV007</td>
-                    <td class="branch-name">Alamos</td>
-                    <td>09:00 - 19:00</td><td>09:00 - 19:00</td><td>10:00 - 17:00</td><td>10:00 - 17:00</td><td class="cerrado">CERRADO</td><td>10:00 - 17:00</td><td>10:00 - 17:00</td><td>09:00 - 19:00</td>
-                </tr>
-                <tr>
-                    <td class="branch-code">SV008</td>
-                    <td class="branch-name">Mazatenango</td>
-                    <td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td class="cerrado">CERRADO</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 20:00</td>
-                </tr>
-                <tr>
-                    <td class="branch-code">SV011</td>
-                    <td class="branch-name">Puerto San José</td>
-                    <td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td class="cerrado">CERRADO</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td>
-                </tr>
-                <tr>
-                    <td class="branch-code">RCS01</td>
-                    <td class="branch-name">Outlet Majadas</td>
-                    <td>09:00 - 21:00</td><td>09:00 - 21:00</td><td>10:00 - 18:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>09:00 - 21:00</td>
-                </tr>
-                <tr>
-                    <td class="branch-code">RCS03</td>
-                    <td class="branch-name">Delta</td>
-                    <td>08:00 - 17:00</td><td>08:00 - 17:00</td><td>08:00 - 12:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:00 - 17:00</td>
-                </tr>
-                <tr>
-                    <td class="branch-code">RC004</td>
-                    <td class="branch-name">Majadas</td>
-                    <td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>10:00 - 18:00</td><td>10:00 - 20:00</td><td class="cerrado">CERRADO</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'ServicioTecnico')">Servicio Técnico y Abasto</button>
+        <button class="tab-btn" onclick="openTab(event, 'Kioscos')">Horarios Kioscos</button>
     </div>
 
-    <h2 class="section-title">Servicio a Domicilio </h2>
-    <div class="cards-container">
-        <div class="card">
-            <h4>Lunes, Martes y Miércoles</h4>
-            <p><strong>Equipo completo</strong> en horario normal.</p>
+    <div id="ServicioTecnico" class="tab-content active">
+        
+        <h2 class="section-title">Talleres Presenciales</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="2">Centro de Servicio</th>
+                        <th>Lunes 30/03</th>
+                        <th>Martes 31/03</th>
+                        <th>Miércoles 1/04</th>
+                        <th>Jueves 2/04</th>
+                        <th>Viernes 3/04</th>
+                        <th>Sábado 4/04</th>
+                        <th>Domingo 5/04</th>
+                        <th>Lunes 6/04</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="branch-code">SV001</td><td class="branch-name">Zona 10</td><td>08:30 - 18:00</td><td>08:30 - 18:00</td><td>08:30 - 13:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:30 - 18:00</td></tr>
+                    <tr><td class="branch-code">SV002</td><td class="branch-name">Delta</td><td>08:00 - 17:00</td><td>08:00 - 17:00</td><td>08:00 - 12:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:00 - 17:00</td></tr>
+                    <tr><td class="branch-code">SV003</td><td class="branch-name">Majadas</td><td>09:00 - 21:00</td><td>09:00 - 21:00</td><td>10:00 - 18:00</td><td>10:00 - 20:00</td><td class="cerrado">CERRADO</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>09:00 - 21:00</td></tr>
+                    <tr><td class="branch-code">SV004</td><td class="branch-name">Xela</td><td>08:30 - 18:00</td><td>08:30 - 18:00</td><td>08:30 - 13:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:30 - 18:00</td></tr>
+                    <tr><td class="branch-code">SV005</td><td class="branch-name">Chimaltenango</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>08:00 - 17:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>10:00 - 17:00</td><td>10:00 - 17:00</td><td>10:00 - 18:00</td></tr>
+                    <tr><td class="branch-code">SV007</td><td class="branch-name">Alamos</td><td>09:00 - 19:00</td><td>09:00 - 19:00</td><td>10:00 - 17:00</td><td>10:00 - 17:00</td><td class="cerrado">CERRADO</td><td>10:00 - 17:00</td><td>10:00 - 17:00</td><td>09:00 - 19:00</td></tr>
+                    <tr><td class="branch-code">SV008</td><td class="branch-name">Mazatenango</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td class="cerrado">CERRADO</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 20:00</td></tr>
+                    <tr><td class="branch-code">SV011</td><td class="branch-name">Puerto San José</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td class="cerrado">CERRADO</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td><td>10:00 - 18:00</td></tr>
+                    <tr><td class="branch-code">RCS01</td><td class="branch-name">Outlet Majadas</td><td>09:00 - 21:00</td><td>09:00 - 21:00</td><td>10:00 - 18:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>09:00 - 21:00</td></tr>
+                    <tr><td class="branch-code">RCS03</td><td class="branch-name">Delta</td><td>08:00 - 17:00</td><td>08:00 - 17:00</td><td>08:00 - 12:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>08:00 - 17:00</td></tr>
+                    <tr><td class="branch-code">RC004</td><td class="branch-name">Majadas</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>10:00 - 18:00</td><td>10:00 - 20:00</td><td class="cerrado">CERRADO</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td><td>10:00 - 20:00</td></tr>
+                </tbody>
+            </table>
         </div>
-        <div class="card card-alert">
-            <h4>Jueves</h4>
-            <p>Horario normal con <strong>equipo reducido</strong> (el necesario).</p>
+
+        <h2 class="section-title">Servicio a Domicilio (Próxima Semana)</h2>
+        <div class="cards-container">
+            <div class="card">
+                <h4>Lunes, Martes y Miércoles</h4>
+                <p><strong>Equipo completo</strong> en horario normal.</p>
+            </div>
+            <div class="card card-alert">
+                <h4>Jueves</h4>
+                <p>Horario normal con <strong>equipo reducido</strong> (el necesario).</p>
+            </div>
+            <div class="card card-closed">
+                <h4>Viernes</h4>
+                <p><strong>Descanso completo.</strong></p>
+            </div>
+            <div class="card card-alert">
+                <h4>Sábado</h4>
+                <p>Descanso completo con <strong>técnicos alertas</strong> por cualquier emergencia o caso VIP.</p>
+            </div>
         </div>
-        <div class="card card-closed">
-            <h4>Viernes</h4>
-            <p><strong>Descanso completo.</strong></p>
+
+        <h2 class="section-title">Entregas a Domicilio</h2>
+        <div class="cards-container">
+            <div class="card">
+                <h4>Días de Entrega Activos</h4>
+                <p>Se estarán realizando entregas regulares los días:</p>
+                <p><strong>Lunes 30, martes 31 de marzo y miércoles 1 de abril.</strong></p>
+            </div>
+            <div class="card card-alert">
+                <h4>Reanudación de Entregas</h4>
+                <p>Los envíos se pausan de jueves a domingo.</p>
+                <p>Las entregas a domicilio se reanudarán en su normalidad el <strong>lunes 6 de abril.</strong></p>
+            </div>
         </div>
-        <div class="card card-alert">
-            <h4>Sábado</h4>
-            <p>Descanso completo con <strong>técnicos alertas</strong> por cualquier emergencia o caso VIP.</p>
+
+        <h2 class="section-title">Calendario de Abasto (Semanas 14 y 15)</h2>
+        <div class="info-box">
+            <strong>Válido del Lunes 30 de marzo al Sábado 11 de abril.</strong><br>
+            Agradecemos validar con detalle sus días de visita asignados para las programaciones de entregas con clientes y la recepción de abasto por parte de transporte interno.
+        </div>
+        <div class="cards-container">
+            <div class="card">
+                <h4>Semana 14 (Semana Santa)</h4>
+                <p><strong>Del Lunes 30/03 al Miércoles 01/04:</strong> Abasto normal según programación.</p>
+                <p class="text-closed">*** Los días Jueves 02, Viernes 03 y Sábado 04 NO se tendrá abasto.</p>
+            </div>
+            <div class="card">
+                <h4>Semana 15</h4>
+                <p class="text-closed" style="margin-bottom: 8px;">*** El día Lunes 06/04 NO se tendrá abasto.</p>
+                <p><strong>Del Martes 07/04 al Sábado 11/04:</strong> Retomamos visitas y abasto normal.</p>
+            </div>
         </div>
     </div>
 
-    <h2 class="section-title">Entregas a Domicilio</h2>
-    <div class="cards-container">
-        <div class="card">
-            <h4>Días de Entrega Activos</h4>
-            <p>Se estarán realizando entregas regulares los días:</p>
-            <p><strong>Lunes 30, martes 31 de marzo y miércoles 1 de abril.</strong></p>
+    <div id="Kioscos" class="tab-content">
+        
+        <div class="info-box" style="margin-top: 20px; background-color: #fff3cd; border-color: var(--distelsa-yellow);">
+            <strong>NOTA IMPORTANTE:</strong> Kioscos Max y Samsung que están en Centro Comercial operan con el <strong>mismo horario de la tienda</strong>.
         </div>
-        <div class="card card-alert">
-            <h4>Reanudación de Entregas</h4>
-            <p>Los envíos se pausan de jueves a domingo.</p>
-            <p>Las entregas a domicilio se reanudarán en su normalidad el <strong>lunes 6 de abril.</strong></p>
-        </div>
-    </div>
 
-    <h2 class="section-title">Calendario de Abasto </h2>
-    
-    <div class="info-box">
-        <strong>Válido del Lunes 30 de marzo al Sábado 11 de abril.</strong><br>
-        Agradecemos validar con detalle sus días de visita asignados para las programaciones de entregas con clientes y la recepción de abasto por parte de transporte interno.
-    </div>
-
-    <div class="cards-container">
-        <div class="card">
-            <h4>Semana 14 (Semana Santa)</h4>
-            <p><strong>Del Lunes 30/03 al Miércoles 01/04:</strong> Abasto normal según programación.</p>
-            <p class="text-closed">*** Los días Jueves 02, Viernes 03 y Sábado 04 NO se tendrá abasto.</p>
+        <h2 class="section-title">Kioscos Max y Motorola (Del 01 al 05 de abril)</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Branch</th>
+                        <th>Tienda</th>
+                        <th>Miércoles 01</th>
+                        <th>Jueves 02</th>
+                        <th>Viernes 03</th>
+                        <th>Sábado 04</th>
+                        <th>Domingo 05</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="branch-code">MOTO1</td><td class="branch-name">MOTOROLA EXPERIENCE ESTORE</td><td>09:00 a 21:00</td><td>09:00 a 17:00</td><td class="cerrado">CERRADO</td><td>10:00 a 19:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX01</td><td class="branch-name">KIOSCO MAX MIRAFLORES I</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX02</td><td class="branch-name">KIOSCO MAX PRADERA CONCEPCIÓN</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX03</td><td class="branch-name">KIOSCO MAX GALERIAS PRADERA ZONA 10</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 19:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX04</td><td class="branch-name">KIOSCO MAX PORTALES I</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX05</td><td class="branch-name">KIOSCO MAX OAKLAND MALL</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX06</td><td class="branch-name">KIOSCO MAX ESKALA ROOSEVELT</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX07</td><td class="branch-name">KIOSCO TIKAL FUTURA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX08</td><td class="branch-name">KIOSCO MAX PROCERES</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>10:00 a 19:00</td><td class="cerrado">CERRADO</td></tr>
+                    <tr><td class="branch-code">KMX09</td><td class="branch-name">KIOSCO MAX CHIMALTENANGO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX10</td><td class="branch-name">KIOSCO MAX PRADERA DE XELA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX11</td><td class="branch-name">KIOSCO MAX EL FRUTAL</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX12</td><td class="branch-name">KIOSCO MAX METRO NORTE</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 19:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX13</td><td class="branch-name">KIOSCO MAX PACIFIC CENTER</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX14</td><td class="branch-name">KIOSCO MAX CHIQUIMULA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX15</td><td class="branch-name">KIOSCO MAX PRADERA PUERTO BARRIOS</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX16</td><td class="branch-name">KIOSCO MAX CENTRA NORTE</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX17</td><td class="branch-name">KIOSCO MAX MONSERRAT</td><td>09:00 a 19:00</td><td>09:00 a 19:00</td><td class="cerrado">CERRADO</td><td>09:00 a 19:00</td><td>09:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX18</td><td class="branch-name">KIOSCO MAX CENTRA SUR</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX19</td><td class="branch-name">KIOSCO MAX NARANJO MALL</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX20</td><td class="branch-name">KIOSCO MAX RETALHULEU</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX21</td><td class="branch-name">KIOSCO MAX SAN LUCAS</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX22</td><td class="branch-name">KIOSCO MAX PRADERA ESCUINTLA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX23</td><td class="branch-name">KIOSCO MAX HUEHUETENANGO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX25</td><td class="branch-name">KIOSCO MAX METROCENTRO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX27</td><td class="branch-name">KIOSCO MAX PLAZA CEMACO</td><td>09:00 a 21:00</td><td>09:00 a 17:00</td><td class="cerrado">CERRADO</td><td>09:00 a 19:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX29</td><td class="branch-name">KIOSCO MAX MEGA CENTRO</td><td>09:00 a 20:00</td><td>10:00 a 19:00</td><td class="cerrado">CERRADO</td><td>10:00 a 18:00</td><td>10:00 a 18:00</td></tr>
+                    <tr><td class="branch-code">KMX30</td><td class="branch-name">KIOSCO MAX MEGA 6</td><td>09:00 a 19:30</td><td>10:00 a 18:00</td><td class="cerrado">CERRADO</td><td>10:00 a 18:00</td><td>10:00 a 18:00</td></tr>
+                    <tr><td class="branch-code">KMX31</td><td class="branch-name">KIOSCO MAX COBAN</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX32</td><td class="branch-name">KIOSCO MAX MAZATENANGO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX33</td><td class="branch-name">KIOSCO MAX PARQUE LAS AMERICAS</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX34</td><td class="branch-name">KIOSCO MAX SAN NICOLAS</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX37</td><td class="branch-name">KIOSCO MAX TIQUISATE</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>09:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX38</td><td class="branch-name">KIOSCO MAX CAPITOL</td><td>08:00 a 20:00</td><td>08:00 a 20:00</td><td class="cerrado">CERRADO</td><td>08:00 a 20:00</td><td>08:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX39</td><td class="branch-name">KIOSCO MAX SANTA CLARA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX40</td><td class="branch-name">KIOSCO MAX UTZ ULEW</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX42</td><td class="branch-name">KIOSCO MAX GRAN CARCHA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX43</td><td class="branch-name">KIOSCO MAX JUTIAPA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX44</td><td class="branch-name">KIOSCO MAX ZACAPA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX45</td><td class="branch-name">KIOSCO MAX VISTARES</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX46</td><td class="branch-name">KIOSCO MAX COATEPEQUE</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX48</td><td class="branch-name">KIOSCO MAX PLUS QUO</td><td>08:00 a 20:00</td><td>08:00 a 20:00</td><td class="cerrado">CERRADO</td><td>08:00 a 20:00</td><td>08:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX49</td><td class="branch-name">KIOSCO MAX PERIROOSEVELT</td><td>09:00 a 21:00</td><td>09:00 a 17:00</td><td class="cerrado">CERRADO</td><td>10:00 a 19:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX50</td><td class="branch-name">KIOSCO MAX EL MINUTO, ESCUINTLA</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX52</td><td class="branch-name">KIOSCO MAX PORTALES II</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX53</td><td class="branch-name">KIOSCO MAX MIRAFLORES II</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX54</td><td class="branch-name">KIOSCO MAX CHIMALTENANGO</td><td>10:00 a 21:00</td><td>10:00 a 21:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 21:00</td></tr>
+                    <tr><td class="branch-code">KMX55</td><td class="branch-name">KIOSCO MAX INTERPLAZA ESCUINTLA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX56</td><td class="branch-name">KIOSCO MAX SANTALU</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX57</td><td class="branch-name">KIOSCO MAX PLAZA ZONA SUR, AMATITLAN</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX58</td><td class="branch-name">KIOSCO MAX EL TRIANGULO HUEHUETENANGO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX59</td><td class="branch-name">KIOSCO MAX JOCOTENANGO</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>09:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX60</td><td class="branch-name">KIOSCO MAX OAKLAND PLACE</td><td>10:00 a 20:00</td><td>10:00 a 21:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX61</td><td class="branch-name">KIOSCO MAX TOTONICAPAN</td><td>10:00 a 21:00</td><td>10:00 a 21:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 22:00</td></tr>
+                    <tr><td class="branch-code">KMX62</td><td class="branch-name">KIOSCO MAX EL ENCUENTRO SANTA CRUZ DE QUICHE</td><td>10:00 A 19:00</td><td>10:00 A 19:00</td><td class="cerrado">CERRADO</td><td>10:00 A 19:00</td><td>10:00 A 19:00</td></tr>
+                    <tr><td class="branch-code">KMX63</td><td class="branch-name">KIOSCO MAX RUS MALL</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX64</td><td class="branch-name">KIOSCO MAX VIDERE</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KMX65</td><td class="branch-name">KIOSCO MAX EL ENCUENTRO ZACAPA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX66</td><td class="branch-name">KIOSCO MAX PLAZA VIDU</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX67</td><td class="branch-name">KIOSCO MAX LA TRINIDAD MALACATAN SAN MARCOS</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX68</td><td class="branch-name">KIOSCO MAX MONTUFAR</td><td>09:00 a 19:00</td><td>09:00 a 19:00</td><td class="cerrado">CERRADO</td><td>10:00 a 17:00</td><td>10:00 a 17:00</td></tr>
+                    <tr><td class="branch-code">KMX69</td><td class="branch-name">KIOSCO MAX TINAJON, QUETZALTENANGO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX70</td><td class="branch-name">KIOSCO MAX EL ENCUENTRO ZACAPA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX71</td><td class="branch-name">KIOSCO MAX OLINTEPEQUE XELA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KMX72</td><td class="branch-name">KIOSCO MAX LAS ALTURAS MALL HUEHUETENANGO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                </tbody>
+            </table>
         </div>
-        <div class="card">
-            <h4>Semana 15</h4>
-            <p class="text-closed" style="margin-bottom: 8px;">*** El día Lunes 06/04 NO se tendrá abasto.</p>
-            <p><strong>Del Martes 07/04 al Sábado 11/04:</strong> Retomamos visitas y abasto normal.</p>
+
+        <h2 class="section-title">Kioscos Samsung (Del 01 al 05 de abril)</h2>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Branch</th>
+                        <th>Tienda</th>
+                        <th>Miércoles 01</th>
+                        <th>Jueves 02</th>
+                        <th>Viernes 03</th>
+                        <th>Sábado 04</th>
+                        <th>Domingo 05</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td class="branch-code">KSM01</td><td class="branch-name">KIOSCO SAMSUNG GALERIAS PRADERA ZONA 10</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 19:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KSM02</td><td class="branch-name">KIOSCO SAMSUNG PRADERA CONCEPCIÓN</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM03</td><td class="branch-name">KIOSCO SAMSUNG CHIMALTENANGO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM04</td><td class="branch-name">KIOSCO SAMSUNG PRADERA XELA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM05</td><td class="branch-name">KIOSCO SAMSUNG HUEHUETENANGO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM06</td><td class="branch-name">KIOSCO SAMSUNG PRADERA ESCUINTLA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM07</td><td class="branch-name">KIOSCO SAMSUNG CHIQUIMULA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM08</td><td class="branch-name">KIOSCO SAMSUNG PRADERA PUERTO BARRIOS</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM09</td><td class="branch-name">KIOSCO SAMSUNG EL FRUTAL</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM10</td><td class="branch-name">KIOSCO SAMSUNG METRO NORTE</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 19:00</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KSM12</td><td class="branch-name">KIOSCO SAMSGUNG ESKALA ROOSEVELT</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM15</td><td class="branch-name">KIOSCO SAMSUNG PETEN</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM16</td><td class="branch-name">KIOSCO SAMSUNG JUTIAPA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM17</td><td class="branch-name">KIOSCO SAMSUNG MONTBLAC, XELA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 A 19:00</td></tr>
+                    <tr><td class="branch-code">KSM18</td><td class="branch-name">KIOSCO SAMSUNG ZACAPA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM19</td><td class="branch-name">KIOSCO SAMSUNG VISTARES</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM21</td><td class="branch-name">KIOSCO SAMSUNG PROCERES</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td class="cerrado">CERRADO</td><td>10:00 a 19:00</td></tr>
+                    <tr><td class="branch-code">KSM22</td><td class="branch-name">KIOSCO SAMSUNG MEGA 6</td><td>09:00 a 19:30</td><td>10:00 a 18:00</td><td class="cerrado">CERRADO</td><td>10:00 a 18:00</td><td>10:00 a 18:00</td></tr>
+                    <tr><td class="branch-code">KSM23</td><td class="branch-name">KIOSCO SAMSUNG RETALHULEU</td><td>09:00 a 20:00</td><td>09:00 a 20:00</td><td class="cerrado">CERRADO</td><td>09:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM24</td><td class="branch-name">KOSCO SAMSUNG COATEPEQUE</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM25</td><td class="branch-name">KIOSCO SAMSUNG SAN LUCAS</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM26</td><td class="branch-name">KIOSCO SAMSUNG SANKRIS MALL</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM27</td><td class="branch-name">KIOSCO SAMSUNG INTERPLAZA ESCUINTLA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM28</td><td class="branch-name">KIOSCO SAMSUNG ANDARIA</td><td>10:00 a 21:00</td><td>10:00 a 21:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 21:00</td></tr>
+                    <tr><td class="branch-code">KSM29</td><td class="branch-name">KIOSCO SAMSUNG SANTALU</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 21:00</td><td>10:00 a 20:00</td></tr>
+                    <tr><td class="branch-code">KSM30</td><td class="branch-name">KIOSCO SAMSUNG TIKAL FUTURA</td><td>10:00 a 20:00</td><td>10:00 a 20:00</td><td class="cerrado">CERRADO</td><td>10:00 a 20:00</td><td>10:00 a 19:00</td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
 </div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        
+        // Ocultar todo el contenido de las pestañas
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+            tabcontent[i].classList.remove("active");
+        }
+        
+        // Quitar la clase "active" de todos los botones
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        
+        // Mostrar la pestaña actual y añadir la clase "active" al botón que la abrió
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+</script>
 
 </body>
 </html>
